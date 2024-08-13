@@ -1,0 +1,36 @@
+<h1>Minhas reservas</h1>
+<br><br>
+
+<!-- <mat-nav-list>
+    <mat-list-item *ngFor="let link of links" [activated]="link.isActive">
+       <a matListItemTitle href="...">{{ link }}</a>
+       <button mat-icon-button (click)="showInfo(link)" matListItemMeta>
+          <mat-icon>info</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list> -->
+
+  <mat-nav-list>
+    <mat-list-item *ngFor="let booking of listBookings" style="height: 100px; font-size: 1.2em;" >
+       <a matListItemTitle>
+         Sala:  {{ booking.roomName  }} <br> 
+         Data:  {{ booking.date  }} <br> 
+         Horário: {{booking.horaInicial}} até as {{booking.horaFinal}}
+      </a>
+      <button mat-icon-button  [routerLink]="['/detail-booking', booking.id]" matListItemMeta>
+         <mat-icon>info</mat-icon>
+       </button> 
+      <button mat-icon-button  [routerLink]="['/edit-booking', booking.id]" matListItemMeta>
+         <mat-icon>edit</mat-icon>
+       </button> 
+      <button mat-icon-button (click)="deleteBooking(booking.id)" matListItemMeta>
+         <mat-icon>delete</mat-icon>
+       </button>
+    </mat-list-item>
+  </mat-nav-list>
+
+<br>
+<br>
+<br>
+
+<button [routerLink]="['/']" mat-flat-button color="primary">Voltar</button>

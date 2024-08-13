@@ -1,0 +1,17 @@
+<div *ngIf="isUserAuthenticated()" style="color:blue;">
+    <h2>
+      YOU ARE LOGGED IN
+    </h2>
+</div>
+  
+<section>
+    <div class="example-button-row">  
+        <button [routerLink]="['/create-booking']" mat-flat-button color="primary">Cadastrar nova reserva</button>
+        <br><br>
+        <button [routerLink]="['/list-bookings']" mat-flat-button color="primary">Listar reservas</button>
+
+        <li *ngIf="!isUserAuthenticated()"><a routerLink="/login">Login</a></li>
+        <li *ngIf="isUserAuthenticated()"><a class="logout" (click)="logOut()">Log out</a></li>
+
+    </div>
+</section>

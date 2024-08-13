@@ -1,0 +1,10 @@
+<mat-selection-list>
+    <mat-list-item *ngFor="let timeslot of timeSlotList; let i = index">
+      <mat-checkbox 
+        [(ngModel)]="timeslot.selecionado" 
+        [disabled]="timeslot.isBooked || !canBeSelected(i)"
+        (change)="onSelectionChange(i)">
+        {{timeslot.time}}
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-selection-list>

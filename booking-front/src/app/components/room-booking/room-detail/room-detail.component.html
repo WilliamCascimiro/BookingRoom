@@ -1,0 +1,31 @@
+<h1>Detalhe da reserva</h1>
+<br><br>
+
+<mat-form-field>
+    <mat-label>Select an option</mat-label>
+    <mat-select disabled [(value)]="selectedRoom">
+        <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</mat-option>
+    </mat-select>
+</mat-form-field>
+
+
+<mat-card class="demo-inline-calendar-card">
+    <mat-calendar [(selected)]="selectedDate" ></mat-calendar>
+</mat-card>
+
+<mat-selection-list>
+    <mat-list-item *ngFor="let timeslot of timeSlotList; let i = index">
+      <mat-checkbox 
+        [(ngModel)]="timeslot.selected" 
+        disabled>
+        {{timeslot.time}}
+      </mat-checkbox>
+    </mat-list-item>
+  </mat-selection-list>
+
+
+<br>
+<br>
+<br>
+
+<button [routerLink]="['/list-bookings']" mat-flat-button color="primary">Voltar</button>

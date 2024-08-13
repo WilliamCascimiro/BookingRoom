@@ -1,0 +1,6 @@
+<mat-form-field appearance="fill">
+    <mat-label>Select a Room</mat-label>
+    <mat-select (selectionChange)="onRoomChange($event.value)">
+        <mat-option *ngFor="let room of rooms" [value]="room.id">{{ room.name }}</mat-option>
+    </mat-select>
+</mat-form-field>
