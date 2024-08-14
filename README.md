@@ -15,7 +15,7 @@ docker-compose up --build
 
 ## Acessando o projeto
 
-Após rodar os comandos acima, vá até a barra de endereço e digite a url abaixo:
+Após rodar os comandos acima, espere até que todos os containers estejam rodando e então vá até a barra de endereço e digite a url abaixo:
 ```console
 http://localhost:4200/login
 ```
@@ -36,6 +36,6 @@ http://localhost:4200/login
 |-----------|:---------------:|:-----:|
 | Cadastrar nova reserva  | ✅  |  ❌ |  
 | Listar reservas  | ✅ (Somente as próprias reservas) |  ✅ (A reserva de todos os usuários) | 
-| Ver detalhes da reserva  | ✅ |  Sim | 
+| Ver detalhes da reserva  | ✅ |  ✅ | 
 | Editar reservas  | ✅ |  ❌ |
 | Deletar reserva  | ✅ |  ❌ | 
