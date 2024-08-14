@@ -23,7 +23,7 @@ export class LoginComponent {
             next: (response: AuthenticatedResponse) => {
             this.authService.storeToken(response.token)
             this.invalidLogin = false; 
-            this.router.navigate(["/"]);
+            this.router.navigate(["/index"]);
             },
             error: (err: HttpErrorResponse) => this.invalidLogin = true
         });
