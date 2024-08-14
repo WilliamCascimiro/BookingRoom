@@ -39,3 +39,14 @@ http://localhost:4200/login
 | Ver detalhes da reserva  | ✅ |  ✅ | 
 | Editar reservas  | ✅ |  ❌ |
 | Deletar reserva  | ✅ |  ❌ | 
+
+<br>
+
+## Algumas regras e observações do sistema
+
+
+- **Horários pré agendados**<br/>
+  O sistema trabalha com horários pré cadastrados no banco de dados (tabela **sala_horario** do banco de dados), eu deixei cadastrado horários do dia 12/08/2024 ao dia 16/08/2024 (não estou validando marcação em datas passadas)
+
+- **Agendamento em horários seguidos**<br/>
+  O sistema não permite agendar horários que não são seguidos em uma mesma solicitação, se quiser cadastrar horários não seguidos é necessários realizar 2 solicitações separadas
