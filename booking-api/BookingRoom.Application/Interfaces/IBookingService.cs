@@ -12,6 +12,7 @@ namespace BookingRoom.Application.Services
         Task<Result<IEnumerable<ListBookingResponse>>> ListAllBookingsByUser(string UserId);
         Task<Result<DetailBookingResponse>> GetBookingById(string bookingId);
         Task<IEnumerable<Booking>> ListAllBookings();
+        Task<Result<IEnumerable<ListBookingResponse>>> ListBookingsFromAllUsers();
         Task<Result<bool>> Delete(string bookingId);
     }
 }

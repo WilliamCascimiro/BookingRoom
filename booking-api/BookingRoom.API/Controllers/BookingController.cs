@@ -37,8 +37,16 @@ namespace BookingRoom.API.Controllers
             return Ok(timeSlots);
         }
 
+        [HttpGet("")]
+        [Authorize(Roles = "user")]
+        public async Task<IActionResult> ListAllBookings()
+        {
+            var timeSlots = await _bookingService.ListBookingsFromAllUsers();
+            return Ok(timeSlots);
+        }
+
         [HttpGet("ByBooking/{bookingId}")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetBookingsByUser(string bookingId)
         {
             var booking = await _bookingService.GetBookingById(bookingId);

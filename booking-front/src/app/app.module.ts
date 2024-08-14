@@ -30,6 +30,8 @@ import {MatIconModule} from '@angular/material/icon';
 import { RoomSelectComponent } from './components/room/room-select/room-select.component';
 import { RoomDetailComponent } from './components/room-booking/room-detail/room-detail.component';
 import { RoomBookingMainComponent } from './components/room-booking/room-booking-main/room-booking-main.component';
+import { HeaderComponent } from './components/shared/header/header.component';
+import { RoomBookingListAllUsersComponent } from './components/room-booking/room-booking-list-all-users/room-booking-list-all-users.component';
 
 export function tokenGetter() { 
   return localStorage.getItem("jwt"); 
@@ -46,7 +48,9 @@ export function tokenGetter() {
     RoomBookingEditComponent,
     RoomBookingListComponent,
     RoomDetailComponent,
-    RoomBookingMainComponent
+    RoomBookingMainComponent,
+    HeaderComponent,
+    RoomBookingListAllUsersComponent
   ],
   imports: [
     BrowserModule,

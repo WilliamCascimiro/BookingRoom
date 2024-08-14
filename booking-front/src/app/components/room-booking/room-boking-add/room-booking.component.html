@@ -1,6 +1,8 @@
-<h1>Cadastrar nova reserva</h1>
-<br><br>
+<app-header></app-header>
+<br><br><br>
 
+<h1>Cadastrar nova reserva</h1>
+<br>
 
 <app-room-select (roomSelected)="onRoomSelected($event)"></app-room-select>
 <app-calendar *ngIf="selectedRoomId" (dateChanged)="onDateSelected($event)"></app-calendar>

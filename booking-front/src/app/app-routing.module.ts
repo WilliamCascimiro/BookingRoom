@@ -7,14 +7,16 @@ import { RoomBookingEditComponent } from './components/room-booking/room-booking
 import { RoomDetailComponent } from './components/room-booking/room-detail/room-detail.component';
 import { RoomBookingMainComponent } from './components/room-booking/room-booking-main/room-booking-main.component';
 import { AuthGuard } from './guards/AuthGuard ';
+import { RoomBookingListAllUsersComponent } from './components/room-booking/room-booking-list-all-users/room-booking-list-all-users.component';
 
 const routes: Routes = [
   { path: '', redirectTo: '/index', pathMatch: 'full' }, // Rota padrão (redireciona para /cadastro)
-  { path: 'index', component: RoomBookingMainComponent, canActivate: [AuthGuard] },
-  { path: 'create-booking', component: RoomBookingAddComponent, canActivate: [AuthGuard] },
-  { path: 'list-bookings', component: RoomBookingListComponent, canActivate: [AuthGuard] },
-  { path: 'edit-booking/:id', component: RoomBookingEditComponent, canActivate: [AuthGuard] },
-  { path: 'detail-booking/:id', component: RoomDetailComponent, canActivate: [AuthGuard] },
+  { path: 'index', component: RoomBookingMainComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin', 'user'] } },
+  { path: 'create-booking', component: RoomBookingAddComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin'] } },
+  { path: 'list-my-bookings', component: RoomBookingListComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin'] } },
+  { path: 'list-all-bookings', component: RoomBookingListAllUsersComponent, canActivate: [AuthGuard], data: { expectedRole: ['user'] } },
+  { path: 'edit-booking/:id', component: RoomBookingEditComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin'] } },
+  { path: 'detail-booking/:id', component: RoomDetailComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin', 'user'] } },
   { path: 'login', component: LoginComponent }
 ];
 

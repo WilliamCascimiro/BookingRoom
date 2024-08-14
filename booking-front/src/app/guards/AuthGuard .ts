@@ -7,12 +7,18 @@ import { JwtHelperService } from '@auth0/angular-jwt';
 export class AuthGuard implements CanActivate  {
   constructor(private router:Router, private jwtHelper: JwtHelperService){}
   
-  canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
+  canActivate(next: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
     const token = localStorage.getItem("jwt");
     if (token && !this.jwtHelper.isTokenExpired(token)){
-      return true;
+
+      const decodedToken = this.jwtHelper.decodeToken(token);
+      const expectedRoles  = next.data['expectedRole'] as Array<string>;
+      const userRoles  = decodedToken['http://schemas.microsoft.com/ws/2008/06/identity/claims/role'];  // Supondo que a role está armazenada em 'roles'
+      if (userRoles && expectedRoles.some(role => userRoles.includes(role))) {
+         return true;
+      }
     }
-    this.router.navigate(["login"]);
+    this.router.navigate(["index"]);
     return false;
   }
 }

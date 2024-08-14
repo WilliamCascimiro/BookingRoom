@@ -4,6 +4,7 @@ export interface ListBookingResponse {
     roomId: string;
     date: string;
     horaInicial: string;
+    responsibleUser: string;
     horaFinal: string;
     roomName: string;
 }

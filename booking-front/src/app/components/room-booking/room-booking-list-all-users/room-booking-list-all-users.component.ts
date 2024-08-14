@@ -1,15 +1,14 @@
 import { Component, OnInit } from '@angular/core';
-import { ResponseResult } from 'src/app/interfaces/Request_Response/ResponseResult';
 import { ListBookingResponse } from 'src/app/interfaces/booking/ListBookingResponse';
 import { AuthService } from 'src/app/services/Auth/auth.service';
 import { BookingService } from 'src/app/services/booking/booking.service';
 
 @Component({
-  selector: 'app-room-booking-list',
-  templateUrl: './room-booking-list.component.html',
-  styleUrls: ['./room-booking-list.component.css']
+  selector: 'app-room-booking-list-all-users',
+  templateUrl: './room-booking-list-all-users.component.html',
+  styleUrls: ['./room-booking-list-all-users.component.css']
 })
-export class RoomBookingListComponent implements OnInit {
+export class RoomBookingListAllUsersComponent implements OnInit {
   listBookings: ListBookingResponse[] = []
 
   constructor(private bookingService: BookingService, private authService: AuthService) {}
@@ -19,8 +18,7 @@ export class RoomBookingListComponent implements OnInit {
   }
 
   loadListBookings() {
-    const userId = this.authService.getUserIdFromToken();
-    this.bookingService.getBookings(userId).subscribe(bookings => {
+    this.bookingService.getAllBookings().subscribe(bookings => {
       this.listBookings = bookings.value as ListBookingResponse[];
     });
   }
@@ -30,6 +28,4 @@ export class RoomBookingListComponent implements OnInit {
       this.loadListBookings();
     });
   }
-  
-
 }

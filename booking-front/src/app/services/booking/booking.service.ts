@@ -25,7 +25,11 @@ export class BookingService {
 
   getBookings(userId: string | null): Observable<ResponseResult> {
     const url = `${this.apiUrl}/ByUser/${userId}`;
-    console.log(this.http.get<ResponseResult>(url))
+    return this.http.get<ResponseResult>(url);
+  }
+
+  getAllBookings(): Observable<ResponseResult> {
+    const url = `${this.apiUrl}`;
     return this.http.get<ResponseResult>(url);
   }
 

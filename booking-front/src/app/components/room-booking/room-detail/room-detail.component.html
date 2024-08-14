@@ -1,5 +1,8 @@
-<h1>Detalhe da reserva</h1>
+<app-header></app-header>
 <br><br>
+
+<h1>Detalhe da reserva</h1>
+<br>
 
 <mat-form-field>
     <mat-label>Select an option</mat-label>
@@ -28,4 +31,12 @@
 <br>
 <br>
 
-<button [routerLink]="['/list-bookings']" mat-flat-button color="primary">Voltar</button>
+<div *ngIf="isUserAdmin()">
+  <button [routerLink]="['/list-my-bookings']" mat-flat-button color="primary">Voltar</button>
+</div>
+<div *ngIf="isUser()">
+  <button [routerLink]="['/list-all-bookings']" mat-flat-button color="primary">Voltar</button>
+</div>
+
+
+

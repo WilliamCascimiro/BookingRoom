@@ -24,4 +24,13 @@ export class RoomBookingMainComponent {
     this.authService.removeToken()
     this.router.navigate(['/login']);
   }
+
+  isUserAdmin(){
+    return this.authService.isUserAdmin();
+  }
+
+  isUser(){
+    return this.authService.isUser();
+  }
+
 }

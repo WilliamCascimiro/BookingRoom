@@ -4,6 +4,7 @@ import { ActivatedRoute } from '@angular/router';
 import { Room } from 'src/app/interfaces/Room';
 import { RoomDateTimeSlot } from 'src/app/interfaces/RoomTimeSlot';
 import { DetailBookingResponse } from 'src/app/interfaces/booking/DetailBookingResponse';
+import { AuthService } from 'src/app/services/Auth/auth.service';
 import { BookingService } from 'src/app/services/booking/booking.service';
 import { RoomService } from 'src/app/services/room/room.service';
 
@@ -20,7 +21,7 @@ export class RoomDetailComponent {
   response: DetailBookingResponse | undefined;
   bookingIdParameter: string = '';
 
-  constructor(private roomService: RoomService, private bookingService: BookingService, private snackBar: MatSnackBar, private route: ActivatedRoute) {}
+  constructor(private roomService: RoomService, private authService: AuthService, private bookingService: BookingService, private snackBar: MatSnackBar, private route: ActivatedRoute) {}
 
   ngOnInit() {
     this.bookingIdParameter = this.route.snapshot.paramMap.get('id') ?? '';
@@ -49,6 +50,15 @@ export class RoomDetailComponent {
       this.timeSlotList = timeSlots;
     });
   }
+
+  isUserAdmin(){
+    return this.authService.isUserAdmin();
+  }
+
+  isUser(){
+    return this.authService.isUser();
+  }
+
 }
 
 
