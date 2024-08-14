@@ -25,7 +25,7 @@ namespace BookingRoom.Infra.Data.Context
             modelBuilder.Entity<User>().HasData(
                new User("Administrador 1", "admin1@gmail.com", "1234", "admin"),
                new User("Administrador 2", "admin2@gmail.com", "1234", "admin"),
-               new User("Usuário 1", "user1@gmail.com", "1234", "admin"));
+               new User("Usuário 1", "user1@gmail.com", "1234", "user"));
 
             Guid idSala1 = Guid.NewGuid();
             Guid idSala2 = Guid.NewGuid();

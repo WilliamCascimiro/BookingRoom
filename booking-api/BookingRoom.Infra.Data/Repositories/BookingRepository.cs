@@ -20,7 +20,17 @@ namespace BookingRoom.Infra.Data.Repositories
             return await _dbSet
                     .Where(x => x.UserId == userID)
                     .Include(x => x.RoomTimeSlots)
+                    .Include(x => x.User)
                     .Include(x => x.Room)
+                    .ToListAsync();
+        }
+
+        public virtual async Task<List<Booking>> GetFromAllUsers()
+        {
+            return await _dbSet
+                    .Include(x => x.RoomTimeSlots)
+                    .Include(x => x.Room)
+                    .Include(x => x.User)
                     .ToListAsync();
         }
     }

@@ -46,6 +46,7 @@ namespace BookingRoom.API.Controllers
                 new Claim(ClaimTypes.Name, userLogin.Name),
                 new Claim(ClaimTypes.Role, userLogin.Role),
                 new Claim("userId", userLogin.Id.ToString()),
+                new Claim("name", userLogin.Name),
                 new Claim(JwtRegisteredClaimNames.UniqueName, userLogin.Email),
                 new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
                 new Claim(JwtRegisteredClaimNames.Iat, DateTime.UtcNow.Ticks.ToString()),

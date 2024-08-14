@@ -220,6 +220,45 @@ namespace BookingRoom.Application.Services
                     bookingResponse.UserId = booking.UserId;
                     bookingResponse.RoomId = booking.RoomId;
                     bookingResponse.RoomName = booking.Room.Name;
+                    bookingResponse.ResponsibleUser = booking.User.Name;
+                    bookingResponse.Date = booking.RoomTimeSlots?.Select(x => x.Date).FirstOrDefault().ToString() ?? "Data não disponível";
+                    bookingResponse.HoraInicial = dataInicial.ToString() ?? "Hora final não disponível";
+                    bookingResponse.HoraFinal = dataFinal?.AddHours(1).ToString() ?? "Hora final não disponível";
+                    listBookingResponse.Add(bookingResponse);
+                }
+
+                listBookingResponse = listBookingResponse.OrderBy(x => DateTime.Parse(x.Date))
+                    .ThenBy(x => x.HoraInicial).ToList();
+
+                return Result<IEnumerable<ListBookingResponse>>.Success(listBookingResponse);
+            }
+            catch (Exception ex)
+            {
+                return Result<IEnumerable<ListBookingResponse>>.Failure(HttpStatusCode.BadRequest, "Ocorreu um erro");
+            }
+        }
+
+        public async Task<Result<IEnumerable<ListBookingResponse>>> ListBookingsFromAllUsers()
+        {
+            try
+            {
+                var bookings = await _bookingRepository.GetFromAllUsers();
+
+                if (bookings == null || bookings.Count() <= 0)
+                    return Result<IEnumerable<ListBookingResponse>>.Failure(HttpStatusCode.BadRequest, "Nenhuma reserva encontrada.");
+
+                var listBookingResponse = new List<ListBookingResponse>();
+                foreach (var booking in bookings)
+                {
+                    TimeOnly? dataInicial = booking.RoomTimeSlots?.Select(x => x.Time).Min();
+                    TimeOnly? dataFinal = booking.RoomTimeSlots?.Select(x => x.Time).Max();
+
+                    var bookingResponse = new ListBookingResponse();
+                    bookingResponse.Id = booking.Id;
+                    bookingResponse.UserId = booking.UserId;
+                    bookingResponse.RoomId = booking.RoomId;
+                    bookingResponse.RoomName = booking.Room.Name;
+                    bookingResponse.ResponsibleUser = booking.User.Name;
                     bookingResponse.Date = booking.RoomTimeSlots?.Select(x => x.Date).FirstOrDefault().ToString() ?? "Data não disponível";
                     bookingResponse.HoraInicial = dataInicial.ToString() ?? "Hora final não disponível";
                     bookingResponse.HoraFinal = dataFinal?.AddHours(1).ToString() ?? "Hora final não disponível";

@@ -5,6 +5,7 @@
         public Guid Id { get; set; }
         public Guid UserId { get; set; }
         public Guid RoomId { get; set; }
+        public string ResponsibleUser { get; set; }
         public string RoomName { get; set; }
         public string Date { get; set; }
         public string HoraInicial { get; set; }

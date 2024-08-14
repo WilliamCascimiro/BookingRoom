@@ -19,7 +19,7 @@ namespace BookingRoom.API.Controllers
         }
 
         [HttpGet]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin, user")]
         public async Task<IActionResult> Index()
         {
             var booking = await _roomService.GetAll();
@@ -27,7 +27,7 @@ namespace BookingRoom.API.Controllers
         }
 
         [HttpGet("{roomId}/get-time-slots-selected")]
-        [Authorize(Roles = "admin")]
+        [Authorize(Roles = "admin,user")]
         public async Task<IActionResult> GetRoomDateTimeSlots(string roomId, [FromQuery] DateTime date, [FromQuery] string bookingId)
         {
             var timeSlots = await _roomTimeSlotService.GetRoomDateTimeSlotsAsync(roomId, date, bookingId);
