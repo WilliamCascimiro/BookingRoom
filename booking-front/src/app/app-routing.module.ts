@@ -10,7 +10,7 @@ import { AuthGuard } from './guards/AuthGuard ';
 import { RoomBookingListAllUsersComponent } from './components/room-booking/room-booking-list-all-users/room-booking-list-all-users.component';
 
 const routes: Routes = [
-  { path: '', redirectTo: '/login', pathMatch: 'full' }, // Rota padrão (redireciona para /cadastro)
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
   { path: 'index', component: RoomBookingMainComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin', 'user'] } },
   { path: 'create-booking', component: RoomBookingAddComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin'] } },
   { path: 'list-my-bookings', component: RoomBookingListComponent, canActivate: [AuthGuard], data: { expectedRole: ['admin'] } },
