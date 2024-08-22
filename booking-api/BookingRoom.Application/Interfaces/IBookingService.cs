@@ -7,7 +7,7 @@ namespace BookingRoom.Application.Services
 {
     public interface IBookingService
     {
-        Task<Result<BookingDTOOutput>> Create(CreateBookingRequest reserva);
+        Task<Result<BookingDTOOutput>> Create(CreateBookingRequestOld reserva);
         Task<Result<BookingDTOOutput>> Update(UpdateBookingRequest updateBookingRequest);
         Task<Result<IEnumerable<ListBookingResponse>>> ListAllBookingsByUser(string UserId);
         Task<Result<DetailBookingResponse>> GetBookingById(string bookingId);

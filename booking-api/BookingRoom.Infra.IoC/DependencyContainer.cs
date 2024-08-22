@@ -1,10 +1,13 @@
-﻿using BookingRoom.Application.Services;
+﻿
+using BookingRoom.Application.Services;
 using BookingRoom.Domain.Interfaces;
 using BookingRoom.Infra.Data.Context;
 using BookingRoom.Infra.Data.Repositories;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
+
+using System.Reflection;
 
 namespace BookingRoom.Infra.IoC
 {
@@ -38,6 +41,8 @@ namespace BookingRoom.Infra.IoC
             services.AddScoped<IRoomService, RoomService>();
             services.AddScoped<IRoomTimeSlotService, RoomTimeSlotService>();
             services.AddScoped<IUserService, UserService>();
+
+            services.AddMediatR(cfg => cfg.RegisterServicesFromAssemblies(AppDomain.CurrentDomain.GetAssemblies()));
 
             return services;
         }

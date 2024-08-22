@@ -1,6 +1,6 @@
 ﻿namespace BookingRoom.Application.DTOs.Booking
 {
-    public class CreateBookingRequest
+    public class CreateBookingRequestOld
     {
         public List<Guid> id { get; set; }
         public Guid roomId { get; set; }

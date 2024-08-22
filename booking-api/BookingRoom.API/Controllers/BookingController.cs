@@ -1,5 +1,7 @@
 ﻿using BookingRoom.Application.DTOs.Booking;
+using BookingRoom.Application.Features.Bookings.Commands.CreateBooking;
 using BookingRoom.Application.Services;
+using MediatR;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 
@@ -11,17 +13,20 @@ namespace BookingRoom.API.Controllers
     public class BookingController : ControllerBase
     {
         protected readonly IBookingService _bookingService;
+        protected readonly IMediator _mediator;
 
-        public BookingController(IBookingService bookingService)
+        public BookingController(IBookingService bookingService, IMediator mediator)
         {
             _bookingService = bookingService;
+            _mediator = mediator;
         }
 
         [HttpPost("")]
-        [Authorize(Roles = "admin")]
-        public async Task<IResult> Create([FromBody] CreateBookingRequest createBookingRequest)
+        //[Authorize(Roles = "admin")]
+        [AllowAnonymous]
+        public async Task<IResult> Create([FromBody] CreateBookingRequest command)
         {
-            var result = await _bookingService.Create(createBookingRequest);
+            var result = await _mediator.Send(command);
 
             if (!result.IsSuccess)
                 return Results.Problem(result.Error, statusCode: result.StatusCode);
@@ -30,7 +35,8 @@ namespace BookingRoom.API.Controllers
         }
 
         [HttpGet("ByUser/{userId}")]
-        [Authorize(Roles = "admin")]
+        //[Authorize(Roles = "admin")]
+        [AllowAnonymous]
         public async Task<IActionResult> ListAllBookingsByUser(string userId)
         {
             var timeSlots = await _bookingService.ListAllBookingsByUser(userId);

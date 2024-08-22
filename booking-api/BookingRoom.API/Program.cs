@@ -3,6 +3,7 @@ using BookingRoom.API.Middlewares;
 using BookingRoom.Infra.IoC;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.IdentityModel.Tokens;
+using System.Reflection;
 using System.Text;
 
 namespace BookingRoom.API
@@ -20,6 +21,7 @@ namespace BookingRoom.API
             builder.Services.AddSwaggerGen();
 
             builder.Services.RegisterServices(builder.Configuration);
+            
 
             var key = Encoding.ASCII.GetBytes("JWTAuthenticationSecured7630b55d7c954cf493283886888427ec");
             builder.Services.AddAuthentication(x =>

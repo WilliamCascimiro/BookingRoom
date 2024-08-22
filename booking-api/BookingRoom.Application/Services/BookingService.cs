@@ -21,7 +21,7 @@ namespace BookingRoom.Application.Services
             _unitOfWork = unitOfWork;
         }
 
-        public async Task<Result<BookingDTOOutput>> Create(CreateBookingRequest createBookingRequest)
+        public async Task<Result<BookingDTOOutput>> Create(CreateBookingRequestOld createBookingRequest)
         {
             try
             {
@@ -54,7 +54,7 @@ namespace BookingRoom.Application.Services
             }
         }
 
-        public async Task<Result<BookingDTOOutput>> CreateTransactional(CreateBookingRequest createBookingRequest, IEnumerable<TimeSlot> timeSlotList)
+        public async Task<Result<BookingDTOOutput>> CreateTransactional(CreateBookingRequestOld createBookingRequest, IEnumerable<TimeSlot> timeSlotList)
         {
             try
             {
@@ -319,7 +319,7 @@ namespace BookingRoom.Application.Services
             return true;
         }
 
-        private async Task<bool> CheckConsistency(IEnumerable<TimeSlot>? timeSlotsFromDataBase, CreateBookingRequest request)
+        private async Task<bool> CheckConsistency(IEnumerable<TimeSlot>? timeSlotsFromDataBase, CreateBookingRequestOld request)
         {
             //Verifica se a lista está vazia
             if (timeSlotsFromDataBase == null || timeSlotsFromDataBase?.Count() <= 0)
